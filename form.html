@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date Time!</title>
+  <link rel="stylesheet" href="form.css">
+</head>
+
+<body>
+
+  <form action="#">
+    <div class="container">
+      <h1 class="text-center">Szia</h1>
+      <form class="registration-form">
+        <label>
+          <span class="label-text">Mikor érsz rá?</span>
+          <input type="text" id="mikor" required name="mikorerszra">
+        </label>
+        <label>
+          <span class="label-text">Mit szeretnél csinálni?</span>
+          <input type="text" id="mit" required name="mitszeretnelcsinalni">
+        </label>
+
+        <div class="text-center">
+          <button id="submit-butt" class="submit">Let's go</button>
+        </div>
+      </form>
+    </div>
+  </form>
+
+  <script>
+    const but = document.getElementById('submit-butt');
+    but.addEventListener('click', (e) => {
+      e.preventDefault();
+      const mit = document.getElementById('mikor');
+      const mikor = document.getElementById('mit');
+      if (mit.value && mikor.value) {
+        fetch('https://ens2k7txfetnznw.m.pipedream.net', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ mit: mit.value, mikor: mikor.value })
+        })
+          .then(response => response.json())
+          .then(response => window.location.replace("https://heymisi.github.io/date/ott-tala.html"))
+      }
+    });
+
+  </script>
+</body>
+
+</html>
